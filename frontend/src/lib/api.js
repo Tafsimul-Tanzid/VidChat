@@ -63,3 +63,12 @@ export async function getStreamToken() {
   const response = await axiosInstance.get("/chat/token");
   return response.data;
 }
+
+export async function translateMessage(text, targetLanguage, sourceLanguage = null) {
+  const response = await axiosInstance.post("/chat/translate", {
+    text,
+    targetLanguage,
+    sourceLanguage,
+  });
+  return response.data;
+}
