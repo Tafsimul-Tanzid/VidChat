@@ -72,3 +72,28 @@ export async function translateMessage(text, targetLanguage, sourceLanguage = nu
   });
   return response.data;
 }
+
+export async function generateCallSummary(callId, transcript, participants, isComplete = false) {
+  const response = await axiosInstance.post("/chat/summarize", {
+    callId,
+    transcript,
+    participants,
+    isComplete,
+  });
+  return response.data;
+}
+
+export async function getCallSummary(callId) {
+  const response = await axiosInstance.get(`/chat/summaries/${callId}`);
+  return response.data;
+}
+
+export async function getUserCallSummaries() {
+  const response = await axiosInstance.get("/chat/summaries");
+  return response.data;
+}
+
+export async function getDeepgramToken() {
+  const response = await axiosInstance.get("/chat/deepgram-token");
+  return response.data;
+}
